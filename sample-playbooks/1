@@ -1,0 +1,70 @@
+---
+- hosts: dev
+  user: root
+  tasks:   
+          
+          - name: remove apache
+            package: name=apache2 state=absent
+            tags:
+              - rmapache
+            # notify:
+                    # - restart-apche
+          - name: remove openssh
+            package: name=openssh-server state=absent
+          
+          - name: remove vsftpd
+            package: name=vsftpd state=absent
+
+          - name: install apache
+            package: name=apache2 state=present
+            tags:
+                - apache2
+            notify:
+                - restart-apache
+                      
+          - name: install ssh
+            package:  name=openssh-server state=present
+            tags:
+                - ssh
+            notify: 
+                - ssh-restart 
+
+          - name: install vsftpd
+            package: name=vsftpd state=present
+            tags:
+                - vsftpd
+            notify:
+                - restart-vsftpd          
+
+          - name: install git
+            package: name=git state=present
+
+          - name: install jdk
+            package: name=default-jdk state=present
+
+          - name: install maven
+            package: name=maven state=present
+   
+  handlers:
+             
+             - name: restart-apache
+               service: name=apache2 state=restarted
+               tags:
+                    - checking    
+                      #   notify:
+                      # - ssh-restart
+             - name: ssh-restart
+               service: name=sshd state=restarted
+               notify:
+                    - restart-apache  
+             - name: restart-vsftpd
+               service: name=vsftpd state=restarted  
+           
+            # -name: install apche
+          #package:
+          #        name=apache 
+          #         state=installed
+           # -name: install vsftpd
+           #package:name=vsftpd state=present
+           # -name: install ssh
+           # package:name=openssh state=present

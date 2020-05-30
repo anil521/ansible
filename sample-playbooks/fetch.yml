@@ -1,0 +1,13 @@
+---
+- hosts: dev
+  user: root
+  vars:
+          # hello_fetch:
+          #        /aruna/ravi
+           fetch_files:
+                  /anil/file6
+                  #        /anil/file2
+  tasks:
+          - name: fecthing to multiple hosts
+            fetch: src="{{fetch_files}}" dest=/aruna/ravi/
+            # fetch: src=/anil/file1 dest="{{hello_fetch}}"

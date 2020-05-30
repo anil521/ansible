@@ -1,0 +1,6 @@
+---
+- hosts: dev
+  user: root
+  tasks:
+          - name: deploy war file
+            copy: src=/home/ubuntu/ansible/workspace/ansibletomcat/target/myweb-8.2.0.war dest=/opt/tomcat/tomcat/webapps/

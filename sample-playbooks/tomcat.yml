@@ -1,0 +1,13 @@
+---
+- hosts: dev
+  user: root
+  tasks: 
+     - name: installing tomcat through git
+       git:
+         repo: https://github.com/ravikumargdm2020/tomcat
+         dest : /opt/tomcat
+     - name: extracting tonmcat file
+       shell:
+          chdir: /opt/tomcat
+          cmd: tar -xzvf apache-tomcat-9.0.34.tar.gz
+

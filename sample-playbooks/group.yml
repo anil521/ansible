@@ -1,0 +1,14 @@
+---
+- hosts: dev
+  user: root
+  tasks:
+          - name: create multiple groups
+            group: 
+               name: "{{item.name}}"
+               gid: "{{item.gid}}"
+            with_items:
+                    - {name: "group1" , gid: "545"}
+                    - {name: "group2" , gid: "546"}
+                    - {name: "group3" , gid: "547"}
+
+

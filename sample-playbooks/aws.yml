@@ -1,0 +1,26 @@
+---
+- hosts: localhost 
+  gather_facts: false
+  user: root
+  vars:
+          region: ap-south-1
+          instance_type: t2.micro
+          ami: ami-005956c5f0f757d37
+          keypair: anil
+  tasks:
+          - name: launching ec2-amazon linux instance
+            #local_action:
+            ec2:        
+
+            # aws_access_key: 'AKIAJXDNW3HTYSBG6D7Q'
+            # aws_secret_key: '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'
+               key_name: "{{ keypair}}"
+               group: ANIL ALL ALLOW
+               instance_type: "{{ instance_type }}"
+               image: "{{ami}}"
+               wait: true
+               region: "{{ region }}"
+               count: 1
+               vpc_subnet_id: subnet-34be8c5c
+               assign_public_ip: yes
+            register: ec2      

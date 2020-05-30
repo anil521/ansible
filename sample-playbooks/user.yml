@@ -1,0 +1,15 @@
+---
+- hosts: dev
+  user: root
+  tasks:
+          - name: create multiple users
+            user:
+                    name: "{{item.name}}"
+                    password: "{{item.password}}"
+                    group: "{{item.group}}"
+            with_items:
+                   - {name: "anil" , password: "anil" ,  group: "545"}
+                     
+                   - {name: "kumar" , password: "kumar" , group: "546"}
+                   
+                   - {name: "ravi" , password: "ravi" ,  group: "547"}

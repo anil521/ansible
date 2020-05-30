@@ -1,0 +1,20 @@
+---
+- hosts: dev
+  user: root
+  vars:
+          item:
+                  - /anil/file11
+                  - /anil/file12
+  tasks:
+          - name: create a file on dev host
+            # copy: dest=/"{{item}}" content= 'hello anil'
+            file: path="{{item}}" state=touch 
+            # with_itemsi
+            #      ['file5','file6']         
+          - name: create a directory on host
+            file: path=/anil/ravi state=directory
+          - name: remove a file
+            file:
+             path: /anil/testfile2
+             state: absent
+                   

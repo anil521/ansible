@@ -1,0 +1,16 @@
+---
+- hosts: test
+  user: root
+  tasks:
+          - name: install httpd
+            package:
+             name: httpd
+             state: present
+          - name: install ssh
+            package:
+             name: openssh
+             state: present
+          - name: install vsftpd
+            package: name=vsftpd state=present
+          - name: install git
+            package: name=git state=present

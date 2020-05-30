@@ -1,0 +1,12 @@
+---
+- hosts: dev
+  user: root
+  vars:
+          package:
+                  - apache2
+                  - openssh-server
+                  - vsftpd
+
+  tasks:
+          - name: enabling services
+            service: name= "{{package}}" state=restarted  

@@ -1,0 +1,20 @@
+---
+- hosts: dev
+  user: root
+  tasks: 
+        - name: download wget
+          package: name=wget state=present
+        - name: downloading chef-dk
+          shell:
+            chdir: /media
+            # cmd: wget https://packages.chef.io/files/stable/chefdk/4.7.73/el/8/chefdk-4.7.73-1.el7.x86_64.rpm
+            cmd: wget https://packages.chef.io/files/stable/chefdk/4.7.73/ubuntu/18.04/chefdk_4.7.73-1_amd64.deb
+        - name: installing chefdk
+          shell: 
+             chdir: /media
+             #command:
+             # cmd: rpm -ivh chefdk-4.7.73-1.el7.x86_64.rpm
+             cmd: dpkg -i chefdk_4.7.73-1_amd64.deb
+
+...
+

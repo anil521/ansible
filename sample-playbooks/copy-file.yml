@@ -1,0 +1,16 @@
+---
+- hosts: 13.233.98.190
+  user: root
+  vars: 
+   anil_var: 'hello from anil kumar'
+  tasks:
+          - name: copy a file from server to host
+            copy: src=/file2 dest=/anil/file2
+          - name: copying a directory
+            copy: src=/kumar dest=/anil
+          - name: fetching from host
+            fetch: src=/anil/yogesh dest=/kumar
+          - name: creating file using copy cmd
+            copy: dest=/anil/file3 content="{{anil_var}}"
+          - name: create 2nd file using copy cmd
+            copy: dest=/anil/file4 content="{{anil_var}}"  
